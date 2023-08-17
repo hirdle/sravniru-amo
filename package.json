@@ -1,0 +1,27 @@
+{
+  "name": "sravniru-amo",
+  "version": "1.0.0",
+  "description": "server for plugin amocrm sravni.ru",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hirdle/sravniru-amo.git"
+  },
+  "author": "hirdle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hirdle/sravniru-amo/issues"
+  },
+  "homepage": "https://github.com/hirdle/sravniru-amo#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "node-fetch": "^2.6.12",
+    "sequelize": "^6.32.1",
+    "tedious": "^16.4.0"
+  }
+}
