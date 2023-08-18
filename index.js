@@ -10,7 +10,8 @@ var fs = require('fs');
 var util = require('util');
 var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 var log_stdout = process.stdout;
-console.log = function(d) { //
+
+console.log = function(d) { 
   log_file.write(util.format(d) + '\n');
   log_stdout.write(util.format(d) + '\n');
 };
@@ -41,6 +42,8 @@ const User = sequelize.define("user", {
     allowNull: false
   }
 });
+
+
 
 
 function db_sync () {
@@ -136,9 +139,16 @@ async function getAccessToken(referer) {
 
 app.get('/add_amo/', async (req, res) => {
 
-    console.log(req.params)
+  db_create_user(req.query.referer, req.query.code)
   
   
 })
 
-app.listen(process.env.APP_PORT, process.env.APP_IP)
+
+function main() {
+  db_sync()
+  app.listen(process.env.APP_PORT, process.env.APP_IP)
+}
+
+
+main()
