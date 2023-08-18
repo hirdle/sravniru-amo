@@ -147,7 +147,7 @@ app.get('/add_amo/', async (req, res) => {
 
 function main() {
   db_sync()
-  app.listen(process.env.APP_PORT, process.env.APP_IP)
+  // app.listen(process.env.APP_PORT, process.env.APP_IP)
 }
 
 
