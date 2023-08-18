@@ -139,6 +139,7 @@ app.get('/add_amo/', async (req, res) => {
 
   db_create_user(req.query.referer, req.query.code)
   
+  res.json({"status": "ok"})
   
 })
 
