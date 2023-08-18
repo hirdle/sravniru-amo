@@ -133,13 +133,6 @@ async function getAccessToken(referer) {
 
 }
 
-app.get('/', async (req, res) => {
-  console.log('rgrdg')
-  res.json({})
-  
-  
-})
-
 
 
 app.get('/add_amo/', async (req, res) => {
