@@ -95,7 +95,7 @@ async function getRefreshToken(referer, code) {
       "redirect_uri": referer
   }
 
-  const res_token = await fetch(`${referer}/oauth2/access_token/`, {
+  const res_token = await fetch(`https://${referer}/oauth2/access_token/`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json'}
@@ -119,7 +119,7 @@ async function getAccessToken(referer) {
       "redirect_uri": referer
   }
 
-  const res_token = await fetch(`${referer}/oauth2/access_token/`, {
+  const res_token = await fetch(`https://${referer}/oauth2/access_token/`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json'}
