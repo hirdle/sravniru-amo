@@ -137,9 +137,9 @@ async function getAccessToken(referer) {
 
 app.get('/add_amo/', async (req, res) => {
 
-  console.log(req.query.referer, req.query.code)
+  const refresh_token = await getRefreshToken(req.query.referer, req.query.code)
 
-  db_create_user(req.query.referer, req.query.code)
+  db_create_user(req.query.referer, refresh_token)
   
   res.json({"status": "ok"})
   
