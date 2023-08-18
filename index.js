@@ -134,7 +134,7 @@ async function getAccessToken(referer) {
 }
 
 app.get('/', async (req, res) => {
-
+  console.log('rgrdg')
   res.json({})
   
   
