@@ -133,7 +133,12 @@ async function getAccessToken(referer) {
 
 }
 
+app.get('/', async (req, res) => {
 
+  res.json({})
+  
+  
+})
 
 
 
@@ -146,7 +151,7 @@ app.get('/add_amo/', async (req, res) => {
 
 
 function main() {
-  db_sync()
+  // db_sync()
   app.listen(process.env.APP_PORT, process.env.APP_IP)
 }
 
