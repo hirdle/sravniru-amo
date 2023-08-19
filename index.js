@@ -64,6 +64,8 @@ function db_create_user (referer, refresh_token) {
 
 
 function db_update_user (referer, refresh_token) {
+  console.log(referer)
+  console.log(refresh_token)
   User.update({ refresh_token: refresh_token }, {
     where: {
       referer: referer
@@ -103,10 +105,6 @@ async function getRefreshToken(referer, code) {
 
   const token_json = await res_token.json()
 
-  console.log(await token_json.refresh_token)
-
-
-  console.log(referer)
   db_update_user(referer, await token_json.refresh_token)
 
 }
