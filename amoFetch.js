@@ -1,12 +1,12 @@
-async function create_lead () {
+async function create_lead (referer, token, name, phone, email) {
     const contact = [{
-    "first_name": req.query.name,
+    "first_name": name,
     "custom_fields_values": [
         {
             "field_id": 45887,
             "values": [
                 {
-                    "value": req.query.phone
+                    "value": phone
                 }
             ]
         },
@@ -15,7 +15,7 @@ async function create_lead () {
             "field_id": 45889,
             "values": [
                 {
-                    "value": req.query.email
+                    "value": email
                 }
             ]
         }
@@ -24,7 +24,7 @@ async function create_lead () {
         ]
     }]
 
-    const res_contact = await fetch('https://ovalbom.amocrm.ru/api/v4/contacts', {
+    const res_contact = await fetch(`https://${referer}/api/v4/contacts`, {
         method: 'POST',
         body: JSON.stringify(contact),
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
@@ -35,7 +35,7 @@ async function create_lead () {
 
 
     const lead = [{
-        "name": `Заявка от сравни.ру пользователя ${req.query.name}`,
+        "name": `Заявка от сравни.ру пользователя ${name}`,
         "_embedded": {
             "contacts": [
                 {
@@ -45,7 +45,7 @@ async function create_lead () {
         }
     }]
 
-    const res_lead = await fetch('https://ovalbom.amocrm.ru/api/v4/leads', {
+    const res_lead = await fetch(`https://${referer}/api/v4/leads`, {
         method: 'POST',
         body: JSON.stringify(lead),
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
