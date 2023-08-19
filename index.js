@@ -92,7 +92,7 @@ async function getRefreshToken(referer, code) {
       "client_secret": process.env.AMO_CLIENT_SECRET,
       "grant_type": "authorization_code",
       "code": code,
-      "redirect_uri": referer
+      "redirect_uri": "https://"+referer
   }
   console.log(data)
 
