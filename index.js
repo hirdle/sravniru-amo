@@ -105,7 +105,7 @@ async function getRefreshToken(referer, code) {
 
   const token_json = await res_token.json()
 
-  db_update_user(referer, await token_json.refresh_token)
+  return await token_json.refresh_token
 
 }
 
