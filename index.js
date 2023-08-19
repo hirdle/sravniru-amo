@@ -88,6 +88,16 @@ async function db_get_user (referer) {
 
 
 async function create_lead (referer, token, name, phone, email) {
+
+  fetch(`https://${referer}/api/v4/contacts/custom_fields`, {
+      method: 'GET',
+      // body: JSON.stringify(contact),
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+  })
+  .then(r => r.json())
+  .then(r => console.log(r))
+
+
   const contact = [{
   "first_name": name,
   "custom_fields_values": [
@@ -120,7 +130,7 @@ async function create_lead (referer, token, name, phone, email) {
   })
   
   const contact_json = await res_contact.json()
-  console.log(contact_json['validation-errors'][0].errors)
+  // console.log(contact_json['validation-errors'][0].errors)
   const contact_id = contact_json._embedded.contacts[0].id
 
 
