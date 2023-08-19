@@ -91,24 +91,24 @@ async function create_lead (referer, token, name, phone, email) {
   const phone_id = 0
   const email_id = 0
 
-  fetch(`https://${referer}/api/v4/contacts/custom_fields`, {
+  const fields_data_req = await fetch(`https://${referer}/api/v4/contacts/custom_fields`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   })
-  .then(r => r.json())
-  .then(r => {
-    for(var i in r._embedded.custom_fields){
-        if(r._embedded.custom_fields[i].code == "EMAIL"){
-          email_id = r._embedded.custom_fields[i].id
+  const field_data = await fields_data_req.json()._embedded.custom_fields
+  for(var i in field_data){
+        if(field_data[i].code == "EMAIL"){
+          email_id = field_data[i].id
         }
-        if(r._embedded.custom_fields[i].code == "PHONE"){
-          phone_id = r._embedded.custom_fields[i].id
+        if(field_data[i].code == "PHONE"){
+          phone_id = field_data[i].id
        }
     }
     
-  })
+  }
 
-  console.log(email_id, phone_id)
+  console.log(email_id)
+  console.log(phone_id)
 
 
   const contact = [{
