@@ -105,7 +105,7 @@ async function create_lead (referer, token, name, phone, email) {
        }
     }
     
-  }
+  
 
   console.log(email_id)
   console.log(phone_id)
