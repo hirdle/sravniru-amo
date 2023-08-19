@@ -94,6 +94,7 @@ async function getRefreshToken(referer, code) {
       "code": code,
       "redirect_uri": referer
   }
+  console.log(data)
 
   const res_token = await fetch(`https://${referer}/oauth2/access_token/`, {
       method: 'POST',
