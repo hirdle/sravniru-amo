@@ -95,7 +95,7 @@ async function create_lead (referer, token, name, phone, email) {
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   })
   .then(r => r.json())
-  .then(r => console.log(r))
+  .then(r => console.log(r._embedded.custom_fields))
 
 
   const contact = [{
