@@ -160,7 +160,7 @@ async function create_lead (referer, token, name, phone, email) {
   })
   
   const lead_json = await res_lead.json()
-  const lead_id = lead_json._embedded.contacts[0].id
+  // const lead_id = lead_json._embedded.contacts[0].id
   
 
   return lead_json
