@@ -120,6 +120,7 @@ async function create_lead (referer, token, name, phone, email) {
   })
   
   const contact_json = await res_contact.json()
+  console.log(contact_json)
   const contact_id = contact_json._embedded.contacts[0].id
 
 
