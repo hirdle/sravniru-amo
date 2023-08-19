@@ -96,7 +96,8 @@ async function create_lead (referer, token, name, phone, email) {
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   })
   let field_data = await fields_data_req.json()
-  fields_data = field_data._embedded.custom_fields
+  field_data = field_data._embedded.custom_fields
+  console.log(field_data)
   for(var i in field_data){
     console.log(field_data[i].code)
         if(field_data[i].code == "EMAIL"){
