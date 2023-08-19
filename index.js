@@ -98,6 +98,7 @@ async function create_lead (referer, token, name, phone, email) {
   let field_data = await fields_data_req.json()
   fields_data = field_data._embedded.custom_fields
   for(var i in field_data){
+    console.log(field_data[i].code)
         if(field_data[i].code == "EMAIL"){
           email_id = field_data[i].id
         }
