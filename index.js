@@ -88,8 +88,8 @@ async function db_get_user (referer) {
 
 
 async function create_lead (referer, token, name, phone, email) {
-  const phone_id = 0
-  const email_id = 0
+  let phone_id = 0
+  let email_id = 0
 
   const fields_data_req = await fetch(`https://${referer}/api/v4/contacts/custom_fields`, {
       method: 'GET',
