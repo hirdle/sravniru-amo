@@ -108,6 +108,8 @@ async function create_lead (referer, token, name, phone, email) {
     
   })
 
+  console.log(email_id, phone_id)
+
 
   const contact = [{
   "first_name": name,
