@@ -118,7 +118,7 @@ async function getAccessToken(referer) {
       "client_secret": process.env.AMO_CLIENT_SECRET,
       "grant_type": "refresh_token",
       "refresh_token": await db_get_user(referer),
-      "redirect_uri": referer
+      "redirect_uri": "http://vm-f432f7d5.na4u.ru/add_amo"
   }
 
   const res_token = await fetch(`https://${referer}/oauth2/access_token/`, {
@@ -144,6 +144,16 @@ app.get('/add_amo/', async (req, res) => {
   db_create_user(req.query.referer, refresh_token)
   
   res.json({"status": "ok"})
+  
+})
+
+
+app.get('/sravni/', async (req, res) => {
+
+  
+
+  
+  res.json({"status": await getAccessToken(req.query.referer)})
   
 })
 
