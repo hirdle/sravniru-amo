@@ -90,7 +90,7 @@ async function getRefreshToken(referer, code) {
   data = {
       "client_id": process.env.AMO_CLIENT_ID,
       "client_secret": process.env.AMO_CLIENT_SECRET,
-      "grant_type": "code",
+      "grant_type": "authorization_code",
       "code": code,
       "redirect_uri": referer
   }
