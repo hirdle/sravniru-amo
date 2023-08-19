@@ -64,8 +64,6 @@ function db_create_user (referer, refresh_token) {
 
 
 function db_update_user (referer, refresh_token) {
-  console.log(referer)
-  console.log(refresh_token)
   User.update({ refresh_token: refresh_token }, {
     where: {
       referer: referer
@@ -162,7 +160,7 @@ async function create_lead (referer, token, name, phone, email) {
   })
   
   const lead_json = await res_lead.json()
-  // const lead_id = lead_json._embedded.contacts[0].id
+  const lead_id = lead_json._embedded.contacts[0].id
   
 
   return lead_json
@@ -222,24 +220,40 @@ async function getAccessToken(referer) {
 
 app.get('/add_amo/', async (req, res) => {
 
-  const refresh_token = await getRefreshToken(req.query.referer, req.query.code)
+  try {
 
-  db_create_user(req.query.referer, refresh_token)
-  
-  res.json({"status": "ok"})
-  
+    const refresh_token = await getRefreshToken(req.query.referer, req.query.code)
+
+    db_create_user(req.query.referer, refresh_token)
+    
+    res.json({"status": "OK", "message": refresh_token})
+
+  }
+
+  catch(err) {
+
+    res.json({"status": "ERROR", "message": err})
+
+  }
+
 })
 
 
 app.get('/sravni/', async (req, res) => {
 
-  
-  const access_token = await getAccessToken(req.query.referer)
+  try {
 
+    const access_token = await getAccessToken(req.query.referer)
+    const lead_data = await create_lead(req.query.referer, access_token, req.query.name, req.query.phone, req.query.email)
 
-  const lead_data = await create_lead(req.query.referer, access_token, req.query.name, req.query.phone, req.query.email)
-  
-  res.json({"status": lead_data})
+    res.json({"status": "OK", "message": lead_data})
+
+  }
+
+  catch(err) {
+    res.json({"status": "ERROR", "message": err})
+
+  }
   
 })
 
