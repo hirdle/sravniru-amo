@@ -95,23 +95,18 @@ async function create_lead (referer, token, name, phone, email) {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   })
+
   let field_data = await fields_data_req.json()
   field_data = field_data._embedded.custom_fields
-  console.log(field_data)
-  for(var i in field_data){
-    console.log(field_data[i].code)
-        if(field_data[i].code == "EMAIL"){
-          email_id = field_data[i].id
-        }
-        if(field_data[i].code == "PHONE"){
-          phone_id = field_data[i].id
-       }
-    }
-    
-  
 
-  console.log(email_id)
-  console.log(phone_id)
+  for (let i in field_data){
+    if(field_data[i].code == "EMAIL"){
+      email_id = field_data[i].id
+    }
+    if(field_data[i].code == "PHONE"){
+      phone_id = field_data[i].id
+    }
+  }
 
 
   const contact = [{
@@ -146,7 +141,6 @@ async function create_lead (referer, token, name, phone, email) {
   })
   
   const contact_json = await res_contact.json()
-  // console.log(contact_json['validation-errors'][0].errors)
   const contact_id = contact_json._embedded.contacts[0].id
 
 
@@ -168,18 +162,10 @@ async function create_lead (referer, token, name, phone, email) {
   })
   
   const lead_json = await res_lead.json()
-  const lead_id = lead_json._embedded.contacts[0].id
+  // const lead_id = lead_json._embedded.contacts[0].id
   
 
   return lead_json
-  
-  // fetch('https://ovalbom.amocrm.ru/api/v4/contacts/custom_fields', {
-  //     method: 'GET',
-  //     // body: JSON.stringify(contact),
-  //     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${amocrm_token}` }
-  // })
-  // .then(r => r.json())
-  // .then(r => res.json(r))
 }
 
 
