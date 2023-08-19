@@ -237,7 +237,7 @@ app.get('/sravni/', async (req, res) => {
   const access_token = await getAccessToken(req.query.referer)
 
 
-  const lead_data = create_lead(req.query.referer, access_token, req.query.name, req.query.phone, req.query.email)
+  const lead_data = await create_lead(req.query.referer, access_token, req.query.name, req.query.phone, req.query.email)
   
   res.json({"status": lead_data})
   
