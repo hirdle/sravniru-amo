@@ -88,21 +88,32 @@ async function db_get_user (referer) {
 
 
 async function create_lead (referer, token, name, phone, email) {
+  const phone_id = 0
+  const email_id = 0
 
   fetch(`https://${referer}/api/v4/contacts/custom_fields`, {
       method: 'GET',
-      // body: JSON.stringify(contact),
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   })
   .then(r => r.json())
-  .then(r => console.log(r._embedded.custom_fields))
+  .then(r => {
+    for(var i in r._embedded.custom_fields){
+        if(r._embedded.custom_fields[i].code == "EMAIL"){
+          email_id = r._embedded.custom_fields[i].id
+        }
+        if(r._embedded.custom_fields[i].code == "PHONE"){
+          phone_id = r._embedded.custom_fields[i].id
+       }
+    }
+    
+  })
 
 
   const contact = [{
   "first_name": name,
   "custom_fields_values": [
       {
-          "field_id": 45887,
+          "field_id": phone_id,
           "values": [
               {
                   "value": phone
@@ -111,7 +122,7 @@ async function create_lead (referer, token, name, phone, email) {
       },
 
       {
-          "field_id": 45889,
+          "field_id": email_id,
           "values": [
               {
                   "value": email
