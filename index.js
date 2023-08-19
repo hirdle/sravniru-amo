@@ -95,8 +95,6 @@ async function getRefreshToken(referer, code) {
       "redirect_uri": "http://vm-f432f7d5.na4u.ru/add_amo"
   }
 
-  console.log(data)
-
   const res_token = await fetch(`https://${referer}/oauth2/access_token/`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -105,7 +103,9 @@ async function getRefreshToken(referer, code) {
 
   const token_json = await res_token.json()
 
-  console.log(token_json)
+  console.log(await token_json.refresh_token)
+
+
 
   db_update_user(referer, await token_json.refresh_token)
 
