@@ -92,8 +92,9 @@ async function getRefreshToken(referer, code) {
       "client_secret": process.env.AMO_CLIENT_SECRET,
       "grant_type": "authorization_code",
       "code": code,
-      "redirect_uri": "https://"+referer
+      "redirect_uri": "http://vm-f432f7d5.na4u.ru/add_amo"
   }
+
   console.log(data)
 
   const res_token = await fetch(`https://${referer}/oauth2/access_token/`, {
